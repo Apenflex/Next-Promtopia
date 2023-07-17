@@ -1,7 +1,7 @@
 import '@/styles/globals.css'
 
-import Provider from '@/app/auth/Provider'
 import Nav from '@/components/Nav'
+import Provider from '@/components/Provider'
 
 export const metadata = {
     title: 'Promtopia',
@@ -9,6 +9,7 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
+    
     return (
         <html lang="en">
             <body>

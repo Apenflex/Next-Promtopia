@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+    postgres:
+        image: postgres:15.0-alpine
+        container_name: Promtopia
+        environment:
+            - POSTGRES_USER=dev_admin
+            - POSTGRES_PASSWORD=dev_password
+            - POSTGRES_DB=postgres
+        volumes:
+            - postgres:/var/lib/postgresql/data
+        ports:
+            - 5433:5432
+        networks:
+            - postgres
+volumes:
+    postgres:
+networks:
+    postgres:
+        driver: bridge

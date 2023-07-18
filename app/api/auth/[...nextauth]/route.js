@@ -23,6 +23,7 @@ const handler = NextAuth({
             return session
         },
         async signIn({ account, profile, user, credentials }) {
+            // console.log('profile', profile)
             try {
                 const userExists = await prisma.user.findUnique({
                     where: {
@@ -34,7 +35,7 @@ const handler = NextAuth({
                         data: {
                             email: profile.email,
                             name: profile.name,
-                            image: profile.image,
+                            image: profile.picture,
                         },
                     })
                 }

@@ -11,20 +11,20 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(uuid())
-  email     String    @unique
+  id        String   @id @default(uuid())
+  email     String   @unique
   name      String?
   image     String?
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  prompts   Prompt[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  prompts   Prompt[] @relation("PromptCreator")
 }
 
 model Prompt {
-  id        Int      @id @default(autoincrement())
-  creator   User     @relation(fields: [creatorId], references: [id])
+  id        String @id @default(uuid())
+  creator   User   @relation("PromptCreator", fields: [creatorId], references: [id])
   creatorId String
   prompt    String
   tag       String
+  createdAt DateTime @default(now())
 }
-

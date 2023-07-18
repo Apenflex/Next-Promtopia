@@ -9,6 +9,9 @@ import Form from '@/components/form'
 import { delay } from '@/utils/async'
 
 const CreatePrompt = () => {
+    const { data: session } = useSession()
+    // console.log(session?.user.id)
+    const router = useRouter()
     const [submitting, setSubmitting] = useState(false)
     const [post, setPost] = useState({
         prompt: '',
@@ -28,10 +31,10 @@ const CreatePrompt = () => {
                     tag: post.tag,
                 }),
             })
-
+            
             if (res.ok) {
                 toast.success('Prompt created successfully')
-                delay(1000)
+                await delay(1000)
                 router.push('/')
             }
         } catch (error) {

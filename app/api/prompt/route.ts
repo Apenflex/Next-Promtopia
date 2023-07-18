@@ -11,7 +11,9 @@ export const GET = async (req: NextRequest) => {
             include: {
                 creator: {
                     select: {
-                        image: true
+                        image: true,
+                        name: true,
+                        email: true
                     }
                 }
             }

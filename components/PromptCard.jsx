@@ -10,8 +10,12 @@ import { delay } from '@/utils/async'
 
 const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
     // console.log(post)
+    const { data: session } = useSession()
+    const pathName = usePathname()
+	const router = useRouter()
+	
     const [copied, setCopied] = useState('')
-    // console.log('render prompt card')
+
     const handleCopy = async () => {
         toast.success('Prompt copied to clipboard')
         setCopied(post.prompt)
@@ -54,6 +58,16 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
             >
                 {post.tag}
             </p>
+            {session?.user.id === post.creator.id && pathName === '/profile' && (
+                <div className='mt-5 flex-center gap-4 border-t border-gray-200 pt-3'>
+                    <p className="font-inter text-sm green_gradient cursor-pointer" onClick={handleEdit}>
+                        Edit
+                    </p>
+                    <p className="font-inter text-sm orange_gradient cursor-pointer" onClick={handleDelete}>
+                        Delete
+                    </p>
+                </div>
+            )}
         </div>
     )
 }

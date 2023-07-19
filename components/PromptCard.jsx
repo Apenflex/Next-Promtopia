@@ -1,5 +1,6 @@
 'use client'
 
+import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
@@ -12,9 +13,14 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
     // console.log(post)
     const { data: session } = useSession()
     const pathName = usePathname()
-	const router = useRouter()
-	
+    const router = useRouter()
+
     const [copied, setCopied] = useState('')
+
+    const handleProfileClick = () => {
+        if (session?.user.id === post.creatorId) return router.push('/profile')
+        router.push(`/profile/${post.creatorId}?name=${post.creator.name}`)
+    }
 
     const handleCopy = async () => {
         toast.success('Prompt copied to clipboard')
@@ -25,9 +31,17 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
     }
 
     return (
-        <div className="prompt_card">
+        <motion.div
+            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scale: 0.7 }}
+            transition={{ ease: 'easeOut' }}
+            className="prompt_card"
+        >
             <div className="flex justify-between items-start gap-5">
-                <div className="flex-1 flex justify-start items-center gap-3 cursor-pointer">
+                <div
+                    className="flex-1 flex justify-start items-center gap-3 cursor-pointer"
+                    onClick={handleProfileClick}
+                >
                     <Image
                         src={post.creator.image}
                         alt="user_image"
@@ -59,7 +73,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
                 #{post.tag}
             </p>
             {session?.user.id === post.creator.id && pathName === '/profile' && (
-                <div className='mt-5 flex-center gap-4 border-t border-gray-200 pt-3'>
+                <div className="mt-5 flex-center gap-4 border-t border-gray-200 pt-3">
                     <p className="font-inter text-sm green_gradient cursor-pointer" onClick={handleEdit}>
                         Edit
                     </p>
@@ -68,7 +82,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
                     </p>
                 </div>
             )}
-        </div>
+        </motion.div>
     )
 }
 

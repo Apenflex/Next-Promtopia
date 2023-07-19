@@ -19,9 +19,8 @@ const PromptCardList = ({ data, handleTagClick }) => {
 }
 
 const Feed = () => {
-	const [searchText, setSearchText] = useState('')
 	const [posts, setPosts] = useState([])
-	const handleSearchChange = (e) => { }
+	const [searchText, setSearchText] = useState('')
 	
 	useEffect(() => {
 		const fetchPosts = async () => {
@@ -31,6 +30,8 @@ const Feed = () => {
 		}
 		fetchPosts()
 	}, [])
+	
+	const handleSearchChange = (e) => { }
 
     return (
         <section className="feed">

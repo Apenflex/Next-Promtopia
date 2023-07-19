@@ -38,7 +38,7 @@ const CreatePrompt = () => {
                 router.push('/')
             }
         } catch (error) {
-            toast.error('Something went wrong')
+            toast.error('Failed to create prompt')
             console.log(error)
         } finally {
             setSubmitting(false)

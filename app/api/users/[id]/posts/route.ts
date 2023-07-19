@@ -1,4 +1,4 @@
-import { NextRequest } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 
 import prisma from '@/prisma/client'
 
@@ -25,8 +25,8 @@ export const GET = async (req: NextRequest, { params }: { params: Params }) => {
             },
         })
         // console.log('server', prompts)
-        return new Response(JSON.stringify(prompts), { status: 200 })
+        return NextResponse.json(prompts, { status: 200 })
     } catch (error) {
-        return new Response('Failed to fetch all prompts', { status: 500 })
+        return new NextResponse('Failed to fetch all prompts', { status: 500 })
     }
 }

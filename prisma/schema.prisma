@@ -13,11 +13,13 @@ datasource db {
 model User {
   id        String   @id @default(uuid())
   email     String   @unique
-  name      String?
-  image     String?
+  name      String
+  image     String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   prompts   Prompt[] @relation("PromptCreator")
+
+  
 }
 
 model Prompt {
@@ -27,4 +29,6 @@ model Prompt {
   prompt    String
   tag       String
   createdAt DateTime @default(now())
+
+  @@index([creatorId], name: "creatorId")
 }

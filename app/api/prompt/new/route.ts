@@ -12,8 +12,8 @@ export const POST = async (req: NextRequest) => {
                 creator: { connect: { id: userId } },
             },
         })
-        return new Response(JSON.stringify(newPrompt), { status: 201 })
+        return NextResponse.json(newPrompt, { status: 201 })
     } catch (error) {
-        return new Response('Server Error', { status: 500 })
+        return new NextResponse('Failed to create prompt', { status: 500 })
     }
 }

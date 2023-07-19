@@ -7,7 +7,7 @@ import toast from 'react-hot-toast'
 import Form from '@/components/form'
 import { delay } from '@/utils/async'
 
-const EditPrompt = () => {
+export default function EditPrompt () {
     const router = useRouter()
     const searchParams = useSearchParams()
     const promptId = searchParams.get('id')
@@ -65,4 +65,3 @@ const EditPrompt = () => {
         <Form type="Edit" post={post} setPost={setPost} submitting={submitting} handleSubmit={UpdatePrompt} />
     )
 }
-export default EditPrompt

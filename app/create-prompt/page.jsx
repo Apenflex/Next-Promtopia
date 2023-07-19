@@ -8,7 +8,7 @@ import toast from 'react-hot-toast'
 import Form from '@/components/form'
 import { delay } from '@/utils/async'
 
-const CreatePrompt = () => {
+export default function CreatePrompt () {
     const { data: session } = useSession()
     // console.log(session?.user.id)
     const router = useRouter()
@@ -53,4 +53,3 @@ const CreatePrompt = () => {
         handleSubmit={CreatePrompt}
     />
 }
-export default CreatePrompt

@@ -3,12 +3,12 @@
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import { useEffect, useState } from 'react'
+import { toast } from 'react-hot-toast'
 
 import Profile from '@/components/Profile'
-import { toast } from 'react-hot-toast'
 import { delay } from '@/utils/async'
 
-const MyProfile = () => {
+export default function MyProfile () {
     const { data: session } = useSession()
     const router = useRouter()
     const [posts, setPosts] = useState([])
@@ -52,4 +52,3 @@ const MyProfile = () => {
         />
     )
 }
-export default MyProfile
